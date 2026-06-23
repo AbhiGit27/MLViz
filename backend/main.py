@@ -276,4 +276,10 @@ def knn_neighbors(req: NeighborRequest):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("app:app", host="127.0.0.1", port=8000, reload=True)
+    import os
+    # Read port from environment variable (default to 8000 locally)
+    port = int(os.environ.get("PORT", 8000))
+    # Bind to 0.0.0.0 on Railway/production, 127.0.0.1 locally
+    host = "0.0.0.0" if os.environ.get("PORT") else "127.0.0.1"
+    
+    uvicorn.run("main:app", host=host, port=port, reload=True)
