@@ -2,10 +2,11 @@ import sys
 from pydantic import ValidationError
 
 # Import the backend app components
-from app import train_model, decision_boundary, TrainRequest, Point
+# Import the backend app components from main instead of app
+from main import train_model, decision_boundary, TrainRequest, Point
 
 def test_health():
-    from app import health
+    from main import health
     res = health()
     assert res == {"status": "ok"}
     print("Health check endpoint: PASS")
